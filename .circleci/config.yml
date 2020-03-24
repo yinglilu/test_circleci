@@ -5,14 +5,14 @@ jobs:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
-      #- setup_remote_docker
+      - setup_remote_docker
       - run:
           name: Building Docker container
           no_output_timeout: 1h
           command: |
               #export DOCKER_NAME=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #docker build -t $DOCKER_NAME .
+              docker build -t my_docker .
               #docker save $DOCKER_NAME -o /tmp/docker_image.tar
-              docker -h
+              #docker -h
       
