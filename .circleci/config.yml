@@ -1,39 +1,18 @@
 version: 2
 jobs:
-  one:
+  build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: docker:17.05.0-ce-git
     steps:
       - checkout
-      - run: echo "A first hello"
-      - run: echo "Trying out workspaces" > /tmp/echo-output
-      - persist_to_workspace:
-          # Must be an absolute path, or relative path from working_directory
-          root: /tmp
-          # Must be relative path from root
-          paths:
-            - echo-output      
-  two:
-    docker:
-      - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "A more familiar hi"  
-      - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /tmp
-
-      - run: |
-          if [[ $(cat /tmp/echo-output) == "Trying out workspaces" ]]; then
-            echo "It worked!";
-          else
-            echo "Nope!"; exit 1
-          fi
-workflows:
-  version: 2
-  one_and_two:
-    jobs:
-      - one
-      - two:
-          requires:
-            - one
+      - setup_remote_docker
+      - run:
+          name: Building Docker container
+          no_output_timeout: 1h
+          command: |
+              #export DOCKER_NAME=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker build -t $DOCKER_NAME .
+              #docker save $DOCKER_NAME -o /tmp/docker_image.tar
+              docker -h
+      
