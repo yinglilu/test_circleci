@@ -36,7 +36,7 @@ jobs:
           name: Load docker image
           no_output_timeout: 1h
           command: |
-            docker load -i /tmp/my.tar
+            docker load -i /tmp/my_docker.tar
             docker images
             
 workflows:
