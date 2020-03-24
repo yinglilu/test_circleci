@@ -12,7 +12,8 @@ jobs:
           command: |
               #export DOCKER_NAME=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker build -t my_docker .
               #docker save $DOCKER_NAME -o /tmp/docker_image.tar
-              #docker -h
+              
+              docker build -t my_docker .
+              docker save my_docker -o /tmp/my_docker.tar
       
