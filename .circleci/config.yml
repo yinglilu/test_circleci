@@ -5,7 +5,7 @@ jobs:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
-      - setup_remote_docker
+      #- setup_remote_docker
       - run:
           name: Building Docker container
           no_output_timeout: 1h
