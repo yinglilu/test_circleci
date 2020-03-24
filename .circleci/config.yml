@@ -44,6 +44,6 @@ workflows:
   my_workflow:
     jobs:
       - build
-      - test
+      - test:
           requires:
             - build
